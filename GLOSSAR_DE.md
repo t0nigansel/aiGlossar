@@ -42,7 +42,29 @@ Textdateien im Projektverzeichnis, die einem Coding-Agenten dauerhaft mitgeben, 
 
 **Mehr:** [AGENTS.md Spec und Vergleich zu CLAUDE.md](https://www.morphllm.com/agents-md-guide)
 
+### AI Council
+
+Ein bereichsübergreifendes Gremium, das die AI-Nutzung einer Organisation steuert: Es legt Richtlinien fest, gibt Anwendungsfälle frei oder stoppt sie und verteilt Verantwortung über IT, Recht, Sicherheit und Fachbereiche. Häufiger unter dem Namen AI Governance Committee.
+
+**Einordnung:** Organisatorischer Begriff, kein technischer — verwandt mit Shadow AI, das genau dann entsteht, wenn ein solches Gremium fehlt oder zu langsam ist. Treiber sind Regulierung (EU AI Act) und Normen wie ISO/IEC 42001. Vom AI Ethics Board zu unterscheiden, das eher beratend und übergeordnet ist.
+
+### Alignment
+
+Die Ausrichtung eines Modells darauf, dass sein Verhalten den Absichten und Werten des Betreibers entspricht, auch in Fällen, die im Training nicht vorkamen. Umfasst Methoden wie RLHF, explizite Regeln (Constitutional AI) und nachgelagerte Guardrails.
+
+**Einordnung:** Oberbegriff, keine einzelne Technik. Perfekte Ausrichtung ist ungelöst; in der Praxis geht es um Grade und messbare Grenzen, nicht um einen Zustand „gelöst". Nicht zu verwechseln mit Guardrail, das zur Laufzeit kontrolliert — Alignment sitzt schon im Modell.
+
+**Mehr:** [AI alignment, Wikipedia](https://en.wikipedia.org/wiki/AI_alignment)
+
 ## C
+
+### Chain-of-Thought (CoT)
+
+Eine Prompting-Technik, bei der das Modell die Zwischenschritte zu einer Antwort ausschreibt, statt nur das Endergebnis zu nennen. Das verbessert mehrschrittige Aufgaben wie Rechnen und Logik spürbar.
+
+**Einordnung:** Technik, nicht Modelltyp — abzugrenzen vom Reasoning Model, das dieses Verhalten eintrainiert und die Ableitung meist verbirgt. Die ausgeschriebene Kette ist keine verlässliche Erklärung des tatsächlichen Rechenwegs und taugt nicht als Nachweis. Kostet zusätzliche Token.
+
+**Mehr:** [Chain-of-Thought Prompting Elicits Reasoning in LLMs, Originalarbeit 2022](https://arxiv.org/abs/2201.11903)
 
 ### Chunking
 
@@ -99,6 +121,14 @@ Die maximale Menge an Token, die ein Modell bei einem Aufruf gleichzeitig verarb
 **Mehr:** [Effective context engineering for AI agents, Anthropic](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)
 
 ## D
+
+### Data Poisoning
+
+Manipulierte oder bösartige Daten gelangen ins Training oder Fine-Tuning eines Modells und prägen dauerhaft dessen Verhalten, etwa als Hintertür oder gezielte Falschausgabe. Anders als beim Context Poisoning, das zur Laufzeit wirkt, sitzt der Schaden hier in den Gewichten.
+
+**Einordnung:** In der OWASP-Liste als LLM04 Data and Model Poisoning geführt. Schwer zu entdecken, weil das Modell normal wirkt, bis der Auslöser kommt. Die Gegenmaßnahme liegt in Herkunft und Prüfung der Daten und damit nah an der Model Supply Chain.
+
+**Mehr:** [OWASP Top 10 for LLM Applications 2025, PDF](https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-v2025.pdf)
 
 ### Determinism und Reproducibility
 
@@ -166,6 +196,14 @@ Im ursprünglichen Sinn die Richtung von Anforderungen und Entwurf zur lauffähi
 
 **Mehr:** [What Is Forward Engineering](https://luvina.net/forward-engineering/) · [What is Forward Deployed Engineering](https://invisibletech.ai/blog/what-is-forward-deployed-engineering)
 
+### Foundation Model
+
+Ein großes, auf breiten Daten vortrainiertes Modell, das als gemeinsame Basis für viele nachgelagerte Aufgaben dient, statt für eine einzige trainiert zu sein. LLMs sind der bekannteste Fall; der Begriff umfasst aber auch Bild-, Audio- und multimodale Modelle.
+
+**Einordnung:** Der Begriff stammt aus Stanford (2021) und betont die gemeinsame Grundlage, nicht die Größe. Oft synonym mit „Frontier Model" verwendet, das aber eher die jeweils leistungsstärkste Generation meint. Aus einem Foundation Model wird über Fine-Tuning oder RLHF ein einsatzfähiges Instruct-Modell.
+
+**Mehr:** [Foundation model, Wikipedia](https://en.wikipedia.org/wiki/Foundation_model)
+
 ## G
 
 ### Grounding
@@ -217,6 +255,16 @@ Ein Mensch bestätigt, korrigiert oder blockiert an definierten Stellen, bevor d
 **Einordnung:** Wirksam gegen falsche Entscheidungen und wirkungslos, sobald niemand mehr hinsieht. Zwei Fallen: Freigabe-Ermüdung, bei der reflexhaft bestätigt wird, und Geschwindigkeit, denn in Abläufen, die auf Angriffe reagieren müssen, ist die Wartezeit auf einen Menschen selbst ein Risiko. Tragfähig wird das Muster, wenn vorab festgelegt ist, welche Aktionen eine Unterschrift brauchen, statt alle.
 
 **Mehr:** [OWASP Top 10 for LLM Applications 2025, PDF](https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-v2025.pdf)
+
+## I
+
+### In-Context Learning
+
+Die Fähigkeit eines Modells, eine Aufgabe allein aus Anweisungen und Beispielen im Prompt zu lösen, ohne dass seine Gewichte verändert werden. Mit mehreren Beispielen spricht man von Few-Shot, mit einem von One-Shot, ganz ohne von Zero-Shot.
+
+**Einordnung:** Abzugrenzen vom Fine-Tuning: Hier lernt das Modell nichts dauerhaft, es nutzt nur den Kontext des aktuellen Aufrufs. Prompt Engineering ist im Kern die Kunst, dieses Verhalten gezielt auszulösen. Mehr Beispiele helfen, kosten aber Token und Platz im Context Window.
+
+**Mehr:** [Language Models are Few-Shot Learners (GPT-3), Originalarbeit 2020](https://arxiv.org/abs/2005.14165)
 
 ## J
 
@@ -292,6 +340,14 @@ Die Gestaltung der Frage, wann ein Agent weitermacht, neu ansetzt oder aufhört.
 
 **Mehr:** [What Is Loop Engineering, IBM](https://www.ibm.com/think/topics/loop-engineering)
 
+### Lost in the Middle
+
+Der Effekt, dass Modelle Informationen am Anfang und Ende einer langen Eingabe zuverlässiger nutzen als in der Mitte. Relevante Inhalte, die mittig platziert sind, werden häufiger übersehen.
+
+**Einordnung:** Ein Teileffekt von Context Rot, belegt in der Arbeit von Liu et al. (2023). Praktische Folge fürs RAG: Die besten Treffer gehören an den Rand des Prompts, nicht in die Mitte. Betrifft auch als „long-context" beworbene Modelle.
+
+**Mehr:** [Lost in the Middle: How Language Models Use Long Contexts, 2023](https://arxiv.org/abs/2307.03172)
+
 ## M
 
 ### MCP (Model Context Protocol)
@@ -309,6 +365,14 @@ Speicher, der über eine einzelne Sitzung hinaus erhalten bleibt: Fakten über d
 **Einordnung:** Memory ist Context Engineering mit Persistenz, kein Modellgedächtnis. Sicherheitsrelevant, weil eine einmal eingeschleuste Falschinformation die Sitzung überlebt. Was hineingeschrieben wird, gehört genauso geprüft wie eine Eingabe.
 
 **Mehr:** [Effective context engineering for AI agents, Anthropic](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)
+
+### Mixture of Experts (MoE)
+
+Eine Architektur, in der ein Modell aus vielen spezialisierten Teilnetzen („Experten") besteht, von denen pro Token nur wenige aktiviert werden. So wächst die Parameterzahl, ohne dass die Rechenkosten je Token im gleichen Maß steigen.
+
+**Einordnung:** Erklärt, warum große Modelle bei moderater Inferenzlast möglich sind. Ein Router entscheidet, welche Experten ein Token bearbeiten; genau dieses Routing trägt zur schwächeren Reproduzierbarkeit bei, siehe Determinism und Reproducibility. Nicht mit Model Routing zu verwechseln, das zwischen ganzen Modellen wählt, nicht innerhalb eines Modells.
+
+**Mehr:** [Mixture of experts, Wikipedia](https://en.wikipedia.org/wiki/Mixture_of_experts)
 
 ### Model Drift und Upgrade-Regression
 
@@ -404,6 +468,24 @@ Angreifergesteuerter Text bringt das Modell dazu, Anweisungen zu befolgen, die v
 
 **Mehr:** [OWASP Top 10 for LLM Applications 2025, PDF](https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-v2025.pdf) · [Prompt Injection, Artikelserie von Simon Willison](https://simonwillison.net/tags/prompt-injection/)
 
+### Promptfoo
+
+Ein offenes Werkzeug zum Testen und Bewerten von LLM-Anwendungen: Prompts und Modelle vergleichen, Evals gegen erwartete Ergebnisse fahren und Red-Teaming gegen Prompt Injection und Jailbreaks automatisieren.
+
+**Einordnung:** Produkt, kein Konzept, hier als im Gespräch gängiger Begriff aufgenommen. Deckt zwei Dinge ab, die in diesem Glossar getrennt stehen: Eval und Red Team. Läuft lokal und ist framework-unabhängig.
+
+**Mehr:** [promptfoo.dev](https://www.promptfoo.dev/)
+
+## Q
+
+### Quantization
+
+Die Gewichte, teils auch Aktivierungen, eines Modells werden in einem gröberen Zahlenformat gespeichert, etwa 8 oder 4 Bit statt 16. Das senkt Speicherbedarf und Rechenkosten und macht große Modelle auf kleinerer Hardware lauffähig.
+
+**Einordnung:** Der übliche Weg, ein Modell lokal oder günstig zu betreiben; verwandt mit Distillation, aber ohne erneutes Training. Zu aggressive Quantisierung kostet Genauigkeit, besonders an den Rändern der Verteilung. Gängige Verfahren sind GPTQ und AWQ.
+
+**Mehr:** [Quantization concepts, Hugging Face](https://huggingface.co/docs/transformers/en/quantization/concept_guide)
+
 ## R
 
 ### RAG (Retrieval Augmented Generation)
@@ -434,7 +516,23 @@ Nach der ersten Suche sortiert ein zweites, genaueres Modell die Treffer neu, be
 
 **Einordnung:** Rettet häufig Systeme, deren Vektorsuche zu grob trifft. Kostet Latenz und einen zusätzlichen Modellaufruf. Beim Messen lohnt es sich, den Recall der Suche und die Präzision des Rerankers getrennt zu betrachten.
 
+### RLHF (Reinforcement Learning from Human Feedback)
+
+Ein Trainingsverfahren, das ein Modell an menschlichen Präferenzen ausrichtet: Menschen bewerten Modellantworten, daraus entsteht ein Belohnungsmodell, gegen das das Modell weiter optimiert wird. Der übliche Weg von einem Basismodell zu einem instruierbaren Chat-Modell.
+
+**Einordnung:** Prägt Ton und Verhalten stark, ist aber teuer und schwer reproduzierbar, weil menschliche Urteile schwanken. Varianten ohne menschliche Labels heißen RLAIF, ein leichteres Gegenstück ist DPO (Direct Preference Optimization).
+
+**Mehr:** [Training language models to follow instructions (InstructGPT), Originalarbeit 2022](https://arxiv.org/abs/2203.02155) · [RLHF, Wikipedia](https://en.wikipedia.org/wiki/Reinforcement_learning_from_human_feedback)
+
 ## S
+
+### Sampling
+
+Das Verfahren, mit dem aus der Wahrscheinlichkeitsverteilung des Modells das nächste Token gezogen wird. Top-k beschränkt die Auswahl auf die k wahrscheinlichsten Token, Top-p (Nucleus) auf die kleinste Menge, deren Wahrscheinlichkeiten zusammen p ergeben.
+
+**Einordnung:** Zusammen mit Temperature und Seed der Hebel für Vielfalt gegen Vorhersagbarkeit. Greedy Decoding, also immer das wahrscheinlichste Token, klingt sicher, erzeugt aber oft flache, repetitive Texte, weshalb Top-p heute Standard ist. Wirkt nur bei Temperature über 0.
+
+**Mehr:** [The Curious Case of Neural Text Degeneration (Nucleus Sampling), 2019](https://arxiv.org/abs/1904.09751)
 
 ### Sandbox und Containment
 
@@ -451,6 +549,14 @@ Vom Modell erzeugter Code wird ausgeführt, aber in einer abgeschotteten Umgebun
 **Einordnung:** Der Standardweg, Codeausführung überhaupt zu erlauben, und gleichzeitig die Stelle, an der Containment üblicherweise scheitert. Der Fluchtweg ist selten die Sandbox selbst, sondern ein bewusst freigegebener Ausgang wie ein Paket-Proxy oder ein Registry-Spiegel.
 
 **Mehr:** [OpenAI zum Vorfall](https://openai.com/index/hugging-face-model-evaluation-security-incident/)
+
+### Shadow AI
+
+Der Einsatz von AI-Tools durch Mitarbeitende ohne Freigabe oder Kenntnis der IT- und Sicherheitsabteilung, etwa das Einspeisen von Firmendaten in einen öffentlichen Chatbot. Eine Spielart von Shadow IT, zugespitzt auf AI-Werkzeuge und -Agenten.
+
+**Einordnung:** Das Hauptrisiko ist Datenabfluss in externe Dienste, dazu ungeprüfte Ausgaben in Arbeitsergebnissen. Verbote verschieben das Problem meist nur; wirksamer ist ein freigegebener, gut nutzbarer Ersatz. Abzugrenzen von Shadow IT, das jede nicht freigegebene Software meint, nicht nur AI.
+
+**Mehr:** [What Is Shadow AI?, IBM](https://www.ibm.com/think/topics/shadow-ai)
 
 ### Skill
 
@@ -523,6 +629,14 @@ Schädliche Anweisungen stecken in den Beschreibungen von Werkzeugen, also in Na
 **Mehr:** [MCP03:2025 Tool Poisoning, OWASP](https://owasp.org/www-project-mcp-top-10/2025/MCP03-2025%E2%80%93Tool-Poisoning) · [Reproduzierbare Beispiele, Invariant Labs](https://github.com/invariantlabs-ai/mcp-injection-experiments)
 
 ## V
+
+### Vector Database
+
+Eine Datenbank, die auf das Speichern und schnelle Durchsuchen von Embeddings ausgelegt ist. Sie findet zu einem Anfrage-Vektor die nächstgelegenen Einträge, meist über angenäherte Nachbarschaftssuche (ANN).
+
+**Einordnung:** Das Rückgrat der meisten RAG-Systeme und die technische Heimat von Memory. Der eigentliche Aufwand liegt selten in der Datenbank, sondern in Chunking, Embedding-Wahl und Reranking davor und danach. Bekannte Vertreter sind Pinecone, Weaviate, Qdrant und Chroma; klassische Datenbanken bieten Vektor-Suche inzwischen als Zusatz.
+
+**Mehr:** [Vector database, Wikipedia](https://en.wikipedia.org/wiki/Vector_database)
 
 ### Vector Search
 
