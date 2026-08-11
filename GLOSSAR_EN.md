@@ -146,6 +146,14 @@ A large model serves as a teacher for a smaller one that imitates its behavior. 
 
 **Sources:** [Distilling the Knowledge in a Neural Network, original paper 2015](https://arxiv.org/abs/1503.02531)
 
+### Dumb Zone
+
+The region of a Context Window where a model's answer quality drops noticeably, even though there is still technically free space. In practice it often begins at around 40 percent utilization: the model skips instructions, repeats mistakes, and hallucinates with confidence. The term goes back to Dex Horthy (HumanLayer).
+
+**Context:** The practical flip side of Context Rot. Context Rot names the effect, Dumb Zone the region you want to avoid; its counterpart is the Smart Zone. Rule of thumb: plan around the Smart Zone, not the window size, because the usable budget for a task is the tokens in which the model still works cleanly.
+
+**Sources:** [Don't trust large context windows, Garrit](https://garrit.xyz/posts/2026-05-06-dont-trust-large-context-windows) · [Smart zone, AI Coding Dictionary](https://www.aihero.dev/ai-coding-dictionary/smart-zone)
+
 ## E
 
 ### Embedding

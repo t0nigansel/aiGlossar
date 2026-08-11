@@ -118,7 +118,7 @@ von 1988.
 `GLOSSAR_DE.md` ist die Quelle, `GLOSSAR_EN.md` die Übersetzung. Änderungen
 gehen zuerst nach DE. Ein Eintrag gilt erst als fertig, wenn beide Fassungen
 ihn enthalten. Die englische Fassung folgt denselben Regeln, mit englischer
-Erklärung und den Beschriftungen `**Assessment:**` und `**More:**`.
+Erklärung und den Beschriftungen `**Context:**` und `**Sources:**`.
  
 ## Template
  
